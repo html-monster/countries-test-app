@@ -14,7 +14,7 @@ import {
 } from 'containers/CountriesPage/constants';
 
 import { setCountries, setCountry } from 'containers/CountriesPage/actions';
-import { makeSelectCountries } from 'containers/CountriesPage/selectors';
+import { selectCountries } from 'containers/CountriesPage/selectors';
 
 import request from 'utils/request';
 
@@ -26,7 +26,7 @@ const sortFuncList = {
 };
 
 export function* sortCountries({ payload: sortType }) {
-  const countries = yield select(makeSelectCountries());
+  const countries = yield select(selectCountries);
 
   yield put(setCountries(sort(sortFuncList[sortType], countries)));
 }

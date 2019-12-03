@@ -1,17 +1,12 @@
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { createStructuredSelector } from 'reselect';
 
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 
 import { getCountries, sortCountries } from './actions';
 import {
-  makeSelectCountries,
-  makeSelectCountry,
-  makeSelectLoading,
-  makeSelectLoadingCountry,
-  makeSelectSortType,
+  selectCountries,
 } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -22,13 +17,16 @@ const mapDispatchToProps = (dispatch) => ({
   getCountries: (sortType) => dispatch(getCountries(sortType)),
 });
 
-const mapStateToProps = createStructuredSelector({
-  countries: makeSelectCountries(),
-  country: makeSelectCountry(),
-  loading: makeSelectLoading(),
-  loadingCountry: makeSelectLoadingCountry(),
-  sortType: makeSelectSortType(),
-});
+const mapStateToProps = (state) => {
+  const { countries: countriesState } = state
+  return {
+    countries: selectCountries(state),
+    country: countriesState.country,
+    loading: countriesState.loading,
+    loadingCountry: countriesState.loadingCountry,
+    sortType: countriesState.sortType,
+  }
+};
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 

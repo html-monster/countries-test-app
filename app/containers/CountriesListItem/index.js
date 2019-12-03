@@ -1,12 +1,10 @@
 import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
 
 import { getCountry } from 'containers/CountriesPage/actions';
 import CountriesListItem from './CountriesListItem';
-import { makeSelectPickedCountry } from '../CountriesPage/selectors';
 
-const mapStateToProps = createStructuredSelector({
-  pickedCountry: makeSelectPickedCountry(),
+const mapStateToProps = ({ countries: countriesState }) => ({
+  pickedCountry: countriesState.pickedCountry
 });
 
 const mapDispatchToProps = (dispatch) => ({

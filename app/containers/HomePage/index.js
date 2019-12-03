@@ -1,14 +1,12 @@
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { createStructuredSelector } from 'reselect';
 
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 
 import { getRegion } from './actions';
 import {
-  makeSelectRegions,
-  makeSelectLoading,
+  selectRegions,
 } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -18,9 +16,9 @@ const mapDispatchToProps = (dispatch) => ({
   getRegion: () => dispatch(getRegion()),
 });
 
-const mapStateToProps = createStructuredSelector({
-  regions: makeSelectRegions(),
-  loading: makeSelectLoading(),
+const mapStateToProps = (state) => ({
+  regions: selectRegions(state),
+  loading: state.home.loading,
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
