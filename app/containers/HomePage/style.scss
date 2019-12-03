@@ -1,0 +1,21 @@
+.home-page {
+  .btn {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    border: 0;
+    border-radius: 6px;
+    outline: none;
+    font-size: 2em;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+
+  .btn-green {
+    background: #5fd570;
+
+    &:active {
+      background: #5ac565;
+    }
+  }
+}
