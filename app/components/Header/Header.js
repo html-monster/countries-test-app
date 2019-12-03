@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './style.scss';
 
@@ -7,9 +8,9 @@ class Header extends React.Component {
     return (
       <div className="header">
         <strong>
-          <a href="/">
+          <Link to="/">
             Find necessary country
-          </a>
+          </Link>
         </strong>
       </div>
     );
