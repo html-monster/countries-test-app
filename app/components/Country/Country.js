@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 
 import { isEmpty } from 'ramda';
 
+import ErrorWrapper from 'helpers/ErrorWrapper';
 import LoaderWrapper from 'helpers/LoaderWrapper';
 
 import './style.scss';
 
 const Country = ({
+  errorCountry,
   loadingCountry,
   country,
   country: {
@@ -17,19 +19,21 @@ const Country = ({
   if (!isEmpty(country) || loadingCountry) {
     return (
       <div className="country">
-        <LoaderWrapper loading={loadingCountry}>
-          <div className="country__header">
-            <img className="country__img" src={flag} alt="Country flag" />
-            <h3 className="country__name">{name}</h3>
-          </div>
-          <ul className="country__info">
-            {nativeName && <li className="country__item">Native name: <strong>{nativeName}</strong></li>}
-            {capital && <li className="country__item">Capital: <strong>{capital}</strong></li>}
-            {area && <li className="country__item">Area: <strong>{area} km²</strong></li>}
-            {population && <li className="country__item">Population: <strong>{population}</strong></li>}
-            {subregion && <li className="country__item">Subregion: <strong>{subregion}</strong></li>}
-          </ul>
-        </LoaderWrapper>
+        <ErrorWrapper error={errorCountry} errorMessage="Something went wrong, please try another country!">
+          <LoaderWrapper loading={loadingCountry}>
+            <div className="country__header">
+              <img className="country__img" src={flag} alt="Country flag" />
+              <h3 className="country__name">{name}</h3>
+            </div>
+            <ul className="country__info">
+              {nativeName && <li className="country__item">Native name: <strong>{nativeName}</strong></li>}
+              {capital && <li className="country__item">Capital: <strong>{capital}</strong></li>}
+              {area && <li className="country__item">Area: <strong>{area} km²</strong></li>}
+              {population && <li className="country__item">Population: <strong>{population}</strong></li>}
+              {subregion && <li className="country__item">Subregion: <strong>{subregion}</strong></li>}
+            </ul>
+          </LoaderWrapper>
+        </ErrorWrapper>
       </div>
     );
   }
@@ -54,6 +58,7 @@ Country.propTypes = {
     subregion: PropTypes.string,
   }),
   loadingCountry: PropTypes.bool,
+  errorCountry: PropTypes.bool,
 };
 
 export default Country;

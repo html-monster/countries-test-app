@@ -19,6 +19,7 @@ const ErrorWrapper = ({ error, errorMessage = DEFAULT_ERROR_MESSAGE, children })
 
 ErrorWrapper.propTypes = {
   error: PropTypes.bool,
+  errorMessage: PropTypes.string,
   children: PropTypes.node.isRequired,
 };
 

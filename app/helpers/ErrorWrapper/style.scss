@@ -1,8 +1,11 @@
 .error-wrapper {
   display: flex;
+  flex: 1;
   justify-content: center;
   align-items: center;
   height: 100%;
   margin: 1em 0;
+  text-align: center;
   color: red;
+  line-height: 20px;
 }

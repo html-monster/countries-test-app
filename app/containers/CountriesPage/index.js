@@ -25,7 +25,9 @@ const mapStateToProps = (state) => {
     loading: countriesState.loading,
     loadingCountry: countriesState.loadingCountry,
     sortType: countriesState.sortType,
-  }
+    errorCountriesList: countriesState.errorCountriesList,
+    errorCountry: countriesState.errorCountry,
+  };
 };
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);

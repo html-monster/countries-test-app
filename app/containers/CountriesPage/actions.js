@@ -3,6 +3,8 @@ import {
   GET_COUNTRY,
   SET_COUNTRIES,
   SET_COUNTRY,
+  SET_COUNTRIES_ERROR,
+  SET_COUNTRY_ERROR,
   SORT_COUNTRIES,
   NAME_DESCENDING,
 } from './constants';
@@ -29,6 +31,16 @@ export function setCountry(country) {
   return {
     type: SET_COUNTRY,
     payload: country
+  };
+}
+export function setCountriesError() {
+  return {
+    type: SET_COUNTRIES_ERROR,
+  };
+}
+export function setCountryError() {
+  return {
+    type: SET_COUNTRY_ERROR,
   };
 }
 export function sortCountries(sortType = NAME_DESCENDING) {

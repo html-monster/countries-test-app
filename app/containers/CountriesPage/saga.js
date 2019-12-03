@@ -13,7 +13,7 @@ import {
   POPULATION_ASCENDING,
 } from 'containers/CountriesPage/constants';
 
-import { setCountries, setCountry } from 'containers/CountriesPage/actions';
+import { setCountries, setCountry, setCountriesError, setCountryError } from 'containers/CountriesPage/actions';
 import { selectCountries } from 'containers/CountriesPage/selectors';
 
 import request from 'utils/request';
@@ -38,7 +38,7 @@ export function* getCountries(action) {
 
     yield put(setCountries(countries));
   } catch (err) {
-    console.error(err);
+    yield put(setCountriesError());
   }
 }
 export function* getCountry({ payload }) {
@@ -49,7 +49,7 @@ export function* getCountry({ payload }) {
 
     yield put(setCountry(head(countries)));
   } catch (err) {
-    console.error(err);
+    yield put(setCountryError());
   }
 }
 

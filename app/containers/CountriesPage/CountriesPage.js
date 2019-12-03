@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 
+import ErrorWrapper from 'helpers/ErrorWrapper';
+import LoaderWrapper from 'helpers/LoaderWrapper';
 import Country from 'components/Country';
 import List from 'components/List';
-import LoaderWrapper from 'helpers/LoaderWrapper';
 import CountriesListItem from 'containers/CountriesListItem';
 
 import {
@@ -34,7 +35,7 @@ export default class CountriesPage extends React.Component {
 
   render() {
     const {
-      loading, loadingCountry, countries, country, sortType
+      loading, errorCountriesList, errorCountry, loadingCountry, countries, country, sortType
     } = this.props;
 
     return (
@@ -62,11 +63,14 @@ export default class CountriesPage extends React.Component {
                   <option value={POPULATION_ASCENDING}>Population density ⬆</option>
                 </select>
               </div>
-              <LoaderWrapper loading={loading}>
-                {!!countries.length && <List items={countries} component={CountriesListItem} keyName="name" />}
-              </LoaderWrapper>
+              <ErrorWrapper error={errorCountriesList} errorMessage="Something went wrong, please try another region!">
+                <LoaderWrapper loading={loading}>
+                  {!!countries.length && <List items={countries} component={CountriesListItem} keyName="name" />}
+                </LoaderWrapper>
+              </ErrorWrapper>
             </div>
             <Country
+              errorCountry={errorCountry}
               loadingCountry={loadingCountry}
               country={country}
             />
@@ -79,6 +83,8 @@ export default class CountriesPage extends React.Component {
 
 CountriesPage.propTypes = {
   loading: PropTypes.bool,
+  errorCountriesList: PropTypes.bool,
+  errorCountry: PropTypes.bool,
   loadingCountry: PropTypes.bool,
   match: PropTypes.object,
   countries: PropTypes.arrayOf(PropTypes.shape({
