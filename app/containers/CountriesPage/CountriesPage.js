@@ -81,11 +81,11 @@ CountriesPage.propTypes = {
   loading: PropTypes.bool,
   loadingCountry: PropTypes.bool,
   match: PropTypes.object,
-  countries: PropTypes.arrayOf({
+  countries: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string,
     population: PropTypes.number,
     area: PropTypes.number,
-  }),
+  })),
   country: PropTypes.object,
   sortType: PropTypes.string,
   getCountries: PropTypes.func,

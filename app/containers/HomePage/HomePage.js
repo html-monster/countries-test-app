@@ -34,9 +34,9 @@ const HomePage = ({
 
 HomePage.propTypes = {
   loading: PropTypes.bool,
-  regions: PropTypes.arrayOf({
+  regions: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string,
-  }),
+  })),
   getRegion: PropTypes.func,
 };
 
