@@ -7,4 +7,4 @@ Rest Countries API [https://restcountries.eu/](https://restcountries.eu/)
 yarn && yarn start
 ``
 
-[Demo](https://restcountries.eu/)
+[Demo](https://countyapp.netlify.com/)
