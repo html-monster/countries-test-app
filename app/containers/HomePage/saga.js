@@ -5,7 +5,7 @@ import { find, propEq } from 'ramda';
 
 import { GET_REGIONS } from 'containers/HomePage/constants';
 
-import { setRegion } from 'containers/HomePage/actions';
+import { setRegion, setError } from 'containers/HomePage/actions';
 
 
 import request from 'utils/request';
@@ -24,7 +24,7 @@ export function* getRegions() {
     }, []);
     yield put(setRegion(allRegions));
   } catch (err) {
-    console.error(err);
+    yield put(setError());
   }
 }
 

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 
+import ErrorWrapper from 'helpers/ErrorWrapper';
 import LoaderWrapper from 'helpers/LoaderWrapper';
 import List from 'components/List';
 import RegionListItem from 'containers/RegionListItem';
@@ -9,7 +10,7 @@ import RegionListItem from 'containers/RegionListItem';
 import './style.scss';
 
 const HomePage = ({
-  loading, regions, getRegion
+  loading, error, regions, getRegion
 }) => (
   <article>
     <Helmet>
@@ -24,9 +25,11 @@ const HomePage = ({
         {
           (!regions.length && !loading) && <button type="submit" className="btn btn-green" onClick={getRegion}>Get regions</button>
         }
-        <LoaderWrapper loading={loading}>
-          {!!regions.length && <List items={regions} component={RegionListItem} keyName="name" />}
-        </LoaderWrapper>
+        <ErrorWrapper error={error}>
+          <LoaderWrapper loading={loading}>
+            {!!regions.length && <List items={regions} component={RegionListItem} keyName="name" />}
+          </LoaderWrapper>
+        </ErrorWrapper>
       </section>
     </div>
   </article>
@@ -34,6 +37,7 @@ const HomePage = ({
 
 HomePage.propTypes = {
   loading: PropTypes.bool,
+  error: PropTypes.bool,
   regions: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string,
   })),

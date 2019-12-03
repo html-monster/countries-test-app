@@ -19,6 +19,7 @@ const mapDispatchToProps = (dispatch) => ({
 const mapStateToProps = (state) => ({
   regions: selectRegions(state),
   loading: state.home.loading,
+  error: state.home.error,
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);

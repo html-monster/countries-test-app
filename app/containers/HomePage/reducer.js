@@ -1,5 +1,7 @@
 import {
-  GET_REGIONS, SET_REGIONS
+  GET_REGIONS,
+  SET_REGIONS,
+  SET_ERROR,
 } from './constants';
 
 const initialState = {
@@ -14,6 +16,8 @@ function homeReducer(state = initialState, action) {
       return { ...state, loading: false, regions: action.payload };
     case GET_REGIONS:
       return { ...state, loading: true, error: false };
+    case SET_ERROR:
+      return { ...state, loading: false, error: true };
     default:
       return state;
   }
