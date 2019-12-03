@@ -8,4 +8,4 @@ yarn && yarn start
 ``
 
 ### Demo
-[Demo](https://github.com/html-monster/countries-test-app)
+[Demo](https://html-monster.github.io/countries-test-app/)
