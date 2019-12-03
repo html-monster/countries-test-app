@@ -13,7 +13,12 @@ import {
   POPULATION_ASCENDING,
 } from 'containers/CountriesPage/constants';
 
-import { setCountries, setCountry, setCountriesError, setCountryError } from 'containers/CountriesPage/actions';
+import {
+  setCountries,
+  setCountry,
+  setCountriesError,
+  setCountryError
+} from 'containers/CountriesPage/actions';
 import { selectCountries } from 'containers/CountriesPage/selectors';
 
 import request from 'utils/request';
